@@ -180,28 +180,6 @@
   .st-pulse{position:absolute;inset:0;border-radius:14px;border:2px solid var(--ink);opacity:0;animation:stvPulse 5.5s ease-in-out infinite;pointer-events:none}
   @keyframes stvPulse{0%,66%{opacity:0;transform:scale(.98)}73%{opacity:.28}88%{opacity:0;transform:scale(1.03)}100%{opacity:0}}
 
-  /* ---- Trading mega menu ---- */
-  .mega-panel{position:absolute;left:50%;top:10px;transform:translateX(-50%);width:900px;max-width:calc(100vw - 32px);
-              background:#fff;border:1px solid #E4E4E8;border-radius:16px;box-shadow:0 18px 44px rgba(0,0,0,.10);
-              padding:22px;display:grid;grid-template-columns:1fr 1fr 1fr}
-  .mega-col{padding:0 14px}
-  .mega-mid{border-left:1px solid #EDEDF0;border-right:1px solid #EDEDF0}
-  .mega-h{font:700 9px/1 var(--ui);letter-spacing:1.5px;color:var(--faint);padding:2px 10px 12px}
-  .mega-item{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:10px;cursor:pointer;
-             font:600 13px/1 var(--ui);color:var(--ink);text-decoration:none}
-  .mega-item:hover{background:#F7F7F9}
-  .mega-ic{width:30px;height:30px;border-radius:8px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none}
-  .mega-badge{font:700 8px/1 var(--ui);letter-spacing:.4px;color:#fff;background:var(--ink);border-radius:5px;padding:4px 7px}
-  .mega-caret{margin-left:auto;color:var(--faint);font-size:14px;line-height:1;transition:transform .2s ease}
-  #megaCommodities.open .mega-caret{transform:rotate(180deg)}
-  .mega-sub{display:none;padding:2px 0 4px 42px}
-  .mega-sub.show{display:block}
-  .mega-subitem{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;
-                font:600 12px/1 var(--ui);color:var(--ink2);cursor:pointer}
-  .mega-subitem:hover{background:#F7F7F9}
-  .mega-sic{width:22px;height:22px;border-radius:6px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none}
-  .mega-subitem .arr{margin-left:auto;color:var(--faint)}
-
   /* ---- Markets mobile accordion (desktop shows everything) ---- */
   .chev{display:none;flex:none;color:var(--muted);transition:transform .25s ease}
 
@@ -386,43 +364,6 @@
         <div style="position:absolute;left:50%;top:10px;transform:translateX(-50%);width:460px;background:#fff;border:1px solid #E4E4E8;border-radius:16px;box-shadow:0 18px 44px rgba(0,0,0,.10);padding:18px">
           <div id="dropdownLabel" style="font:600 9px/1 var(--ui);letter-spacing:1.5px;color:var(--faint);padding:0 10px 12px"></div>
           <div id="dropdownItems" style="display:grid;grid-template-columns:1fr 1fr;gap:6px"></div>
-        </div>
-      </div>
-
-      <!-- Trading mega menu -->
-      <div id="megaTrading" style="position:relative;height:0;z-index:9;display:none">
-        <div class="mega-panel">
-          <div class="mega-col">
-            <div class="mega-h">GETTING STARTED</div>
-            <a class="mega-item"><span class="mega-ic"></span>Account Opening</a>
-            <a class="mega-item"><span class="mega-ic"></span>Trading Account</a>
-            <a class="mega-item"><span class="mega-ic"></span>Prime ECN</a>
-            <a class="mega-item"><span class="mega-ic"></span>Funding &amp; Withdrawal</a>
-          </div>
-          <div class="mega-col mega-mid">
-            <div class="mega-h">PLATFORMS</div>
-            <a class="mega-item"><span class="mega-ic"></span>MT5</a>
-            <a class="mega-item"><span class="mega-ic"></span>MT4</a>
-            <a class="mega-item"><span class="mega-ic"></span>Copy Trade</a>
-            <a class="mega-item"><span class="mega-ic"></span>STAR Copy<span class="mega-badge">New</span></a>
-            <a class="mega-item"><span class="mega-ic"></span>STAR Web Trading<span class="mega-badge">New</span></a>
-            <a class="mega-item"><span class="mega-ic"></span>Web Trader<span class="mega-caret">&rsaquo;</span></a>
-            <a class="mega-item"><span class="mega-ic"></span>Mobile Apps</a>
-            <a class="mega-item"><span class="mega-ic"></span>Pro-Link</a>
-          </div>
-          <div class="mega-col">
-            <div class="mega-h">PRODUCTS</div>
-            <a class="mega-item"><span class="mega-ic"></span>Forex</a>
-            <a class="mega-item"><span class="mega-ic"></span>CFD</a>
-            <a class="mega-item" id="megaCommodities"><span class="mega-ic"></span>Commodities<span class="mega-caret">&#9662;</span></a>
-            <div class="mega-sub" id="megaCommoditiesSub">
-              <div class="mega-subitem"><span class="mega-sic"></span>Energies<span class="arr">&rsaquo;</span></div>
-              <div class="mega-subitem"><span class="mega-sic"></span>Metals<span class="arr">&rsaquo;</span></div>
-              <div class="mega-subitem"><span class="mega-sic"></span>Agriculture<span class="arr">&rsaquo;</span></div>
-            </div>
-            <a class="mega-item"><span class="mega-ic"></span>Indices</a>
-            <a class="mega-item"><span class="mega-ic"></span>Shares</a>
-          </div>
         </div>
       </div>
 
@@ -1025,35 +966,14 @@
       el.addEventListener('mouseleave', function(){ el.style.background = 'transparent'; });
     });
   }
-  var mega = document.getElementById('megaTrading');
-  function closeAll(){ openMenu = null; dd.style.display = 'none'; if (mega) mega.style.display = 'none'; }
-  function toggleMenu(key){
-    if (key === 'trading') {
-      var willOpen = mega && mega.style.display !== 'block';
-      closeAll();
-      if (willOpen) mega.style.display = 'block';
-      return;
-    }
-    var reopen = openMenu !== key;
-    closeAll();
-    if (reopen) { openMenu = key; renderMenu(key); dd.style.display = 'block'; }
+  function setMenu(key){
+    if (openMenu === key){ openMenu = null; dd.style.display = 'none'; return; }
+    openMenu = key; renderMenu(key); dd.style.display = 'block';
   }
   Array.prototype.forEach.call(document.querySelectorAll('.navlink'), function(link){
-    link.addEventListener('click', function(e){ e.stopPropagation(); toggleMenu(link.getAttribute('data-menu')); });
+    link.addEventListener('click', function(e){ e.stopPropagation(); setMenu(link.getAttribute('data-menu')); });
   });
-  document.addEventListener('click', closeAll);
-  if (mega) mega.addEventListener('click', function(e){ e.stopPropagation(); }); // keep open when interacting inside
-
-  // Commodities expand / collapse
-  var comm = document.getElementById('megaCommodities');
-  var commSub = document.getElementById('megaCommoditiesSub');
-  if (comm && commSub) {
-    comm.addEventListener('click', function(e){
-      e.preventDefault();
-      comm.classList.toggle('open');
-      commSub.classList.toggle('show');
-    });
-  }
+  document.addEventListener('click', function(){ if (openMenu){ openMenu = null; dd.style.display = 'none'; } });
 
   /* ---------- Markets mobile accordion ---------- */
   Array.prototype.forEach.call(document.querySelectorAll('.mkt-head'), function (head) {
