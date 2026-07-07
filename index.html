@@ -114,8 +114,26 @@
   .media-grid{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
   .media-grid>div{flex:0 0 calc((100% - 32px)/3)}
 
+  /* ---- Live ticker (scrolling marquee) ---- */
+  @keyframes tkScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .tk{display:flex;align-items:center;height:64px;overflow:hidden;position:relative}
+  .tk::before,.tk::after{content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+  .tk::before{left:0;background:linear-gradient(to right,#17171B,rgba(23,23,27,0))}
+  .tk::after{right:0;background:linear-gradient(to left,#17171B,rgba(23,23,27,0))}
+  .tk-track{display:flex;align-items:center;width:max-content;animation:tkScroll 60s linear infinite;will-change:transform}
+  .tk:hover .tk-track{animation-play-state:paused}
+  .tk-item{display:inline-flex;align-items:center;gap:12px;padding:0 30px;border-right:1px solid #2A2A32;white-space:nowrap}
+  .tk-dot{width:6px;height:6px;border-radius:50%;background:#9A9AA4;flex:none}
+  .tk-dot.up{background:#2EC081}.tk-dot.down{background:#F0616D}
+  .tk-sym{font:700 12px/1 var(--ui);color:#fff;letter-spacing:.3px}
+  .tk-price{font:12px/1 var(--mono);color:#C9C9D2;min-width:72px;text-align:right;transition:color .7s ease}
+  .tk-price.fu{color:#2EC081;transition:none}.tk-price.fd{color:#F0616D;transition:none}
+  .tk-chg{font:600 11px/1 var(--ui);min-width:62px;display:inline-flex;align-items:center;gap:5px}
+  .tk-chg.up{color:#2EC081}.tk-chg.down{color:#F0616D}
+  .tk-chg .ar{font-size:8px;line-height:1}
+
   @media (prefers-reduced-motion: reduce){
-    .mq-track,.col-track,.orbit,.ring-rot,.chip,.pd,.shine,
+    .mq-track,.col-track,.tk-track,.orbit,.ring-rot,.chip,.pd,.shine,
     [style*="stFloat"],[style*="stSpin"]{animation:none !important}
     .reveal{opacity:1;transform:none;transition:none}
     .aw-viewport{scroll-behavior:auto}
@@ -160,8 +178,6 @@
   <section style="position:relative;background:#fff;padding:0 0 88px">
     <div style="background:#17171B;padding:9px 40px;text-align:center;font:10.5px/1.4 var(--ui);color:#9A9AA4;letter-spacing:.2px">CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. <span style="color:#C9C9D2">74% of retail investor accounts lose money</span> when trading CFDs with this provider.</div>
 
-    <svg style="position:absolute;top:118px;right:80px;width:200px;height:200px;opacity:.6" viewBox="0 0 200 200" fill="none" stroke="#E6E6EA" stroke-width="1"><circle cx="100" cy="100" r="40"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="92"/></svg>
-    <svg style="position:absolute;top:96px;left:120px;width:140px;height:100px" viewBox="0 0 140 100"><defs><pattern id="dgHero" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#E2E2E6"/></pattern></defs><rect width="140" height="100" fill="url(#dgHero)"/></svg>
 
     <div class="wrap" style="padding-top:36px">
       <!-- nav -->
@@ -251,12 +267,7 @@
 
   <!-- ============ 03 TICKER ============ -->
   <section style="background:#17171B">
-    <div class="wrap" style="height:66px;display:grid;grid-template-columns:repeat(4,1fr)">
-      <div style="display:flex;align-items:center;gap:12px;border-right:1px solid #33333B;padding-right:20px"><span style="width:6px;height:6px;border-radius:50%;background:#9A9AA4"></span><span style="font:700 12px/1 var(--ui);color:#fff">EUR/USD</span><span style="flex:1;text-align:center;font:12px/1 var(--mono);color:#9A9AA4">1.0842</span><span style="font:600 11px/1 var(--ui);color:#fff">+0.03%</span></div>
-      <div style="display:flex;align-items:center;gap:12px;border-right:1px solid #33333B;padding:0 20px"><span style="width:6px;height:6px;border-radius:50%;background:#9A9AA4"></span><span style="font:700 12px/1 var(--ui);color:#fff">GOLD</span><span style="flex:1;text-align:center;font:12px/1 var(--mono);color:#9A9AA4">3,241.80</span><span style="font:600 11px/1 var(--ui);color:#fff">+0.82%</span></div>
-      <div style="display:flex;align-items:center;gap:12px;border-right:1px solid #33333B;padding:0 20px"><span style="width:6px;height:6px;border-radius:50%;background:#9A9AA4"></span><span style="font:700 12px/1 var(--ui);color:#fff">US500</span><span style="flex:1;text-align:center;font:12px/1 var(--mono);color:#9A9AA4">5,681</span><span style="font:600 11px/1 var(--ui);color:#fff">+0.58%</span></div>
-      <div style="display:flex;align-items:center;gap:12px;padding-left:20px"><span style="width:6px;height:6px;border-radius:50%;background:#9A9AA4"></span><span style="font:700 12px/1 var(--ui);color:#fff">BTC</span><span style="flex:1;text-align:center;font:12px/1 var(--mono);color:#9A9AA4">103,420</span><span style="font:600 11px/1 var(--ui);color:#fff">+2.14%</span></div>
-    </div>
+    <div class="tk"><div id="tkTrack" class="tk-track"></div></div>
   </section>
 
   <!-- ============ 04 WHY US ============ -->
@@ -405,8 +416,6 @@
 
   <!-- ============ 06b TOOLS ============ -->
   <section style="position:relative;background:var(--canvas);padding:80px 0;overflow:hidden">
-    <svg style="position:absolute;top:120px;right:-110px;width:480px;height:480px;opacity:.6" viewBox="0 0 480 480" fill="none" stroke="#E4E4E8" stroke-width="1"><circle cx="240" cy="120" r="240"/></svg>
-    <svg style="position:absolute;top:88px;left:120px;width:168px;height:72px" viewBox="0 0 168 72"><defs><pattern id="dgTl" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#E2E2E6"/></pattern></defs><rect width="168" height="72" fill="url(#dgTl)"/></svg>
     <div class="wrap">
       <div style="font:700 11px/1 var(--ui);letter-spacing:2px;color:var(--muted)">TOOLS</div>
       <h2 style="margin:14px 0 0;font:800 34px/1.1 var(--ui);letter-spacing:-1px;color:var(--ink)">Amplify every trade.</h2>
@@ -431,7 +440,7 @@
           <div style="margin-top:18px"><span class="clickable" style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font:700 12px/1 var(--ui);padding:12px 22px;border-radius:999px">Try STAR Copy <span style="font:12px/1 var(--ui)">→</span></span></div>
         </div>
         <!-- STAR Web Trading -->
-        <div class="card-h" style="grid-column:2;grid-row:1;background:#fff;border:1px solid var(--hair);border-radius:20px;padding:22px;box-shadow:0 6px 18px rgba(0,0,0,.06)">
+        <div class="card-h" style="grid-column:2 / span 2;grid-row:1;background:#fff;border:1px solid var(--hair);border-radius:20px;padding:22px;box-shadow:0 6px 18px rgba(0,0,0,.06)">
           <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:700 15px/1 var(--ui);color:var(--ink)">STAR Web Trading</span><span style="font:10px/1 var(--ui);color:var(--muted);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:6px 12px">In-browser</span></div>
           <div style="font:10px/1 var(--ui);color:var(--muted);margin-top:10px">Full trading terminal — nothing to install</div>
           <div style="background:var(--soft);border:1px solid var(--line);border-radius:12px;margin-top:16px;overflow:hidden">
@@ -449,20 +458,6 @@
               <div><div style="font:800 15px/1 var(--ui);color:var(--ink)">3.5k+</div><div style="font:9px/1 var(--ui);color:var(--faint);margin-top:4px">daily traders</div></div>
             </div>
             <span style="font:600 11px/1 var(--ui);color:var(--ink)">Launch →</span>
-          </div>
-        </div>
-        <!-- Copy Trade -->
-        <div class="card-h" style="grid-column:3;grid-row:1;background:#fff;border:1px solid var(--hair);border-radius:20px;padding:22px;box-shadow:0 6px 18px rgba(0,0,0,.06)">
-          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:700 15px/1 var(--ui);color:var(--ink)">Copy Trade</span><div style="text-align:right"><span style="font:700 14px/1 var(--mono);color:var(--ink)">2,450</span><span style="font:10px/1 var(--ui);color:var(--muted)"> traders</span></div></div>
-          <div style="font:10px/1 var(--ui);color:var(--muted);margin-top:10px">Mirror strategies on MT4 &amp; MT5 automatically</div>
-          <div style="background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:4px 14px;margin-top:16px">
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)"><span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:#B4B4BD"></span><span style="font:700 10.5px/1 var(--mono);color:var(--ink)">XAUUSD</span></span><span style="font:9px/1 var(--ui);color:var(--muted)">mirrored · 0.10</span><span style="font:700 10.5px/1 var(--mono);color:var(--ink)">+128.40</span></div>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0"><span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:var(--line2)"></span><span style="font:700 10.5px/1 var(--mono);color:var(--ink)">EURUSD</span></span><span style="font:9px/1 var(--ui);color:var(--muted)">mirrored · 0.50</span><span style="font:700 10.5px/1 var(--mono);color:var(--ink)">+64.10</span></div>
-          </div>
-          <div style="font:800 40px/1 var(--ui);color:var(--ink);margin-top:16px">60%</div>
-          <div style="font:9px/1 var(--ui);color:var(--faint);margin-top:8px">Avg win rate across mirrored strategies</div>
-          <div style="display:flex;gap:3px;align-items:flex-end;height:28px;margin-top:10px">
-            <div style="flex:1;height:100%;background:#B4B4BD;border-radius:2px"></div><div style="flex:1;height:100%;background:#B4B4BD;border-radius:2px"></div><div style="flex:1;height:100%;background:#B4B4BD;border-radius:2px"></div><div style="flex:1;height:100%;background:#B4B4BD;border-radius:2px"></div><div style="flex:1;height:100%;background:#B4B4BD;border-radius:2px"></div><div style="flex:1;height:100%;background:#B4B4BD;border-radius:2px"></div><div style="flex:1;height:100%;background:#B4B4BD;border-radius:2px"></div><div style="flex:1;height:100%;background:#B4B4BD;border-radius:2px"></div><div style="flex:1;height:100%;background:#B4B4BD;border-radius:2px"></div><div style="flex:1;height:100%;background:var(--line);border-radius:2px"></div><div style="flex:1;height:100%;background:var(--line);border-radius:2px"></div><div style="flex:1;height:100%;background:var(--line);border-radius:2px"></div><div style="flex:1;height:100%;background:var(--line);border-radius:2px"></div><div style="flex:1;height:100%;background:var(--line);border-radius:2px"></div><div style="flex:1;height:100%;background:var(--line);border-radius:2px"></div>
           </div>
         </div>
         <!-- Synthetic Indices -->
@@ -786,7 +781,7 @@
     trading:   { label:"TRADING", items:[
       {name:"Markets",       desc:"Forex, indices, shares, metals, ETFs"},
       {name:"Platforms",     desc:"Mobile App, MT4, MT5, Web Trader"},
-      {name:"Tools",         desc:"STAR Copy, Copy Trade, Pro-Link"},
+      {name:"Tools",         desc:"STAR Copy, Web Trading, Pro-Link"},
       {name:"Account Types", desc:"Standard, ECN, Pro from $50"}]},
     education: { label:"EDUCATION", items:[
       {name:"Academy",         desc:"Guides, courses and lessons"},
@@ -923,6 +918,68 @@
       + '<div style="font:600 8px/1 '+UI+';letter-spacing:1px;color:#C4C4CC;margin-top:9px">[ MEDIA LOGO ]</div></div>';
   }
   document.getElementById('mediaGrid').innerHTML = media.map(mediaCard).join('');
+
+  /* ---------- live ticker ---------- */
+  (function(){
+    var track = document.getElementById('tkTrack');
+    if (!track) return;
+    var TK = [
+      {s:"EUR/USD", o:1.0842,   d:4, v:0.00035, c:0.03},
+      {s:"GBP/USD", o:1.2715,   d:4, v:0.00035, c:-0.11},
+      {s:"USD/JPY", o:156.82,   d:2, v:0.00045, c:0.24},
+      {s:"XAU/USD", o:3241.80,  d:2, v:0.00060, c:0.82},
+      {s:"XAG/USD", o:38.42,    d:2, v:0.00110, c:1.14},
+      {s:"US500",   o:5681.0,   d:1, v:0.00040, c:0.58},
+      {s:"NAS100",  o:30157.92, d:2, v:0.00050, c:-0.45},
+      {s:"US30",    o:42180,    d:0, v:0.00040, c:0.31},
+      {s:"BTC/USD", o:103420,   d:0, v:0.00160, c:2.14},
+      {s:"ETH/USD", o:3890,     d:0, v:0.00180, c:1.62},
+      {s:"WTI",     o:78.42,    d:2, v:0.00100, c:-0.36},
+      {s:"COPPER",  o:6.068,    d:3, v:0.00080, c:-1.48}
+    ];
+    TK.forEach(function(t){ t.open = t.o; t.price = t.o * (1 + t.c/100); t.prev = t.price; });
+
+    function fmt(p, d){ return p.toLocaleString('en-US',{minimumFractionDigits:d, maximumFractionDigits:d}); }
+
+    function itemHTML(t){
+      return '<span class="tk-item">'
+        + '<span class="tk-dot" data-sym="'+t.s+'"></span>'
+        + '<span class="tk-sym">'+t.s+'</span>'
+        + '<span class="tk-price" data-sym="'+t.s+'">'+fmt(t.price,t.d)+'</span>'
+        + '<span class="tk-chg" data-sym="'+t.s+'"></span></span>';
+    }
+    var one = TK.map(itemHTML).join('');
+    track.innerHTML = one + one; // duplicate for seamless loop
+
+    function q(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+    function paint(t, flash){
+      var chg = (t.price / t.open - 1) * 100;
+      var up = chg >= 0;
+      var pstr = fmt(t.price, t.d);
+      var sel = '[data-sym="' + t.s + '"]';
+      q('.tk-price' + sel).forEach(function(e){
+        e.textContent = pstr;
+        if (flash){
+          var cls = t.price > t.prev ? 'fu' : (t.price < t.prev ? 'fd' : '');
+          if (cls){ e.classList.add(cls); setTimeout((function(el,c){return function(){el.classList.remove(c);};})(e,cls), 130); }
+        }
+      });
+      q('.tk-chg' + sel).forEach(function(e){
+        e.className = 'tk-chg ' + (up ? 'up' : 'down');
+        e.innerHTML = '<span class="ar">' + (up ? '▲' : '▼') + '</span> ' + (up ? '+' : '') + chg.toFixed(2) + '%';
+      });
+      q('.tk-dot' + sel).forEach(function(e){ e.className = 'tk-dot ' + (up ? 'up' : 'down'); });
+    }
+    TK.forEach(function(t){ paint(t, false); });
+
+    setInterval(function(){
+      TK.forEach(function(t){
+        t.prev = t.price;
+        t.price = t.price * (1 + (Math.random() * 2 - 1) * t.v);
+        paint(t, true);
+      });
+    }, 1400);
+  })();
 
   /* ---------- scroll-reveal ---------- */
   var revealEls = document.querySelectorAll('.reveal');
