@@ -271,7 +271,15 @@
     /* fluid fixed-width blocks */
     [style*="width:1080px"]{width:100% !important}
     [style*="width:460px"]{width:90vw !important;max-width:460px}
-    .media-grid>div{flex:0 0 100% !important}
+    .media-grid>div{flex:0 0 82% !important}
+
+    /* horizontal card scrollers on mobile (reduce vertical scroll) */
+    .scroll-x{display:flex !important;flex-wrap:nowrap !important;align-items:flex-start;
+              overflow-x:auto;-webkit-overflow-scrolling:touch;
+              grid-template-columns:none !important;grid-template-rows:none !important;
+              gap:14px !important;scroll-snap-type:x mandatory;scroll-padding-left:18px;padding-bottom:8px}
+    .scroll-x > *, .acad-sub > *{flex:0 0 82% !important;scroll-snap-align:start;min-width:0}
+    .acad-sub{display:contents !important}
 
     /* stack side-by-side "screenshot" cards so text isn't squished */
     [style*="display:flex;gap:24px"]{flex-direction:column !important}          /* Platforms: Web Trader */
@@ -839,7 +847,7 @@
       </div>
 
       <div class="anno" style="margin-top:34px">~ testimonial cards auto-scroll (marquee); pause on hover</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px">
+      <div class="scroll-x" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px">
         <div class="card-h" style="background:#fff;border:1px solid var(--hair);border-radius:18px;padding:24px">
           <div style="display:flex;align-items:center;gap:14px"><span style="width:44px;height:44px;border-radius:50%;background:#DEDEE3"></span><span><span style="display:block;font:700 14px/1 var(--ui);color:var(--ink)">Amara O.</span><span style="display:flex;align-items:center;gap:7px;margin-top:7px"><span style="width:16px;height:11px;background:var(--line2);border-radius:2px"></span><span style="font:10.5px/1 var(--ui);color:var(--muted)">Nigeria</span></span></span></div>
           <div style="display:flex;flex-direction:column;gap:8px;margin-top:20px"><span style="height:7px;width:100%;background:#EFEFF2;border-radius:3px"></span><span style="height:7px;width:76%;background:#EFEFF2;border-radius:3px"></span></div>
@@ -919,7 +927,7 @@
           </div>
         </div>
         <div class="reveal d1">
-          <div id="mediaGrid" class="media-grid"></div>
+          <div id="mediaGrid" class="media-grid scroll-x"></div>
         </div>
       </div>
     </div>
@@ -938,7 +946,7 @@
         <button class="btn btn-primary" style="display:flex;align-items:center;gap:10px;font:700 13px/1 var(--ui);padding:12px 12px 12px 24px;border-radius:23px">Start learning<span style="width:28px;height:28px;border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;font:12px/1 var(--ui)">→</span></button>
       </div>
 
-      <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:18px;margin-top:36px">
+      <div class="scroll-x" style="display:grid;grid-template-columns:1.15fr 1fr;gap:18px;margin-top:36px">
         <div class="card-h" style="background:#fff;border:1px solid var(--hair);border-radius:18px;box-shadow:0 6px 18px rgba(0,0,0,.06);overflow:hidden;padding:18px;display:flex;flex-direction:column">
           <div style="position:relative;flex:1;min-height:280px;background:#DEDEE3;border-radius:12px;display:flex;align-items:center;justify-content:center">
             <svg viewBox="0 0 104 80" style="width:120px;height:92px" fill="none" stroke="#B4B4BD" stroke-width="1.6"><rect x="2" y="2" width="100" height="76" rx="3"/><circle cx="27" cy="24" r="9" fill="#B4B4BD" stroke="none"/><path d="M4 78 L34 40 L62 60 L82 32 L100 78"/></svg>
@@ -949,7 +957,7 @@
           <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px"><span style="height:7px;width:100%;background:var(--line);border-radius:3px"></span><span style="height:7px;width:74%;background:var(--line);border-radius:3px"></span></div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;border-top:1px solid var(--line);padding-top:16px"><span style="font:10px/1 var(--ui);color:var(--muted)">Beginner · 8 min read</span><span style="font:600 12px/1 var(--ui);color:var(--ink)">Read →</span></div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:18px">
+        <div class="acad-sub" style="display:flex;flex-direction:column;gap:18px">
           <div class="card-h" style="flex:1;background:#fff;border:1px solid var(--hair);border-radius:18px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:16px;display:flex;gap:16px">
             <div style="position:relative;flex:0 0 170px;background:#DEDEE3;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 104 80" style="width:56px;height:43px" fill="none" stroke="#B4B4BD" stroke-width="1.6"><rect x="2" y="2" width="100" height="76" rx="3"/><circle cx="27" cy="24" r="9" fill="#B4B4BD" stroke="none"/><path d="M4 78 L34 40 L62 60 L82 32 L100 78"/></svg><span style="position:absolute;top:10px;left:10px;background:#fff;border:1px solid var(--line2);border-radius:10px;padding:5px 12px;font:700 8.5px/1 var(--ui);color:var(--muted)">STRATEGY</span></div>
             <div style="flex:1;display:flex;flex-direction:column">
