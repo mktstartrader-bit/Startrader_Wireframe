@@ -278,12 +278,15 @@
     .scroll-x{display:flex !important;flex-wrap:nowrap !important;align-items:stretch;
               overflow-x:auto;-webkit-overflow-scrolling:touch;
               grid-template-columns:none !important;grid-template-rows:none !important;
-              gap:14px !important;scroll-snap-type:x mandatory;scroll-padding-left:18px;padding-bottom:8px}
+              gap:14px !important;scroll-snap-type:x mandatory;scroll-padding-left:18px;
+              scrollbar-width:none;-ms-overflow-style:none}
+    .scroll-x::-webkit-scrollbar{display:none;width:0;height:0}
     .scroll-x > *, .acad-sub > *{flex:0 0 80% !important;scroll-snap-align:start;min-width:0}
     .acad-sub{display:contents !important}
     /* keep Academy cards a consistent, tidy height on mobile */
     [style*="min-height:280px"]{min-height:170px !important}
-    .sx-nav{display:flex;justify-content:flex-end;gap:10px;margin:0 0 14px}
+    .sx-nav{display:flex;justify-content:flex-end;gap:8px;margin:0 0 10px}
+    .sx-nav .aw-nav{width:38px;height:38px}
 
     /* stack side-by-side "screenshot" cards so text isn't squished */
     [style*="display:flex;gap:24px"]{flex-direction:column !important}          /* Platforms: Web Trader */
