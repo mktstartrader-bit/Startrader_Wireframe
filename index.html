@@ -190,7 +190,11 @@
   .mega-item{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:10px;cursor:pointer;
              font:600 13px/1 var(--ui);color:var(--ink);text-decoration:none}
   .mega-item:hover{background:#F7F7F9}
-  .mega-ic{width:30px;height:30px;border-radius:8px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none}
+  .mega-ic{width:32px;height:32px;border-radius:8px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none}
+  .mega-txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .mega-name{display:flex;align-items:center;gap:6px;font:700 13px/1.15 var(--ui);color:var(--ink)}
+  .mega-desc{font:400 9.5px/1.35 var(--ui);color:var(--muted)}
+  .mega-subitem .mega-name{font:700 12px/1.15 var(--ui);color:var(--ink2)}
   .mega-badge{font:700 8px/1 var(--ui);letter-spacing:.4px;color:#fff;background:var(--ink);border-radius:5px;padding:4px 7px}
   .mega-caret{margin-left:auto;color:var(--faint);font-size:14px;line-height:1;transition:transform .2s ease}
   #megaCommodities.open .mega-caret{transform:rotate(180deg)}
@@ -394,34 +398,34 @@
         <div class="mega-panel">
           <div class="mega-col">
             <div class="mega-h">GETTING STARTED</div>
-            <a class="mega-item"><span class="mega-ic"></span>Account Opening</a>
-            <a class="mega-item"><span class="mega-ic"></span>Trading Account</a>
-            <a class="mega-item"><span class="mega-ic"></span>Prime ECN</a>
-            <a class="mega-item"><span class="mega-ic"></span>Funding &amp; Withdrawal</a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Account Opening</span><span class="mega-desc">Open in minutes, fully regulated</span></span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Trading Account</span><span class="mega-desc">Standard, ECN &amp; Pro accounts</span></span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Prime ECN</span><span class="mega-desc">Ultra-tight institutional spreads</span></span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Funding &amp; Withdrawal</span><span class="mega-desc">Fast, secure — deposit from $50</span></span></a>
           </div>
           <div class="mega-col mega-mid">
             <div class="mega-h">PLATFORMS</div>
-            <a class="mega-item"><span class="mega-ic"></span>MT5</a>
-            <a class="mega-item"><span class="mega-ic"></span>MT4</a>
-            <a class="mega-item"><span class="mega-ic"></span>Copy Trade</a>
-            <a class="mega-item"><span class="mega-ic"></span>STAR Copy<span class="mega-badge">New</span></a>
-            <a class="mega-item"><span class="mega-ic"></span>STAR Web Trading<span class="mega-badge">New</span></a>
-            <a class="mega-item"><span class="mega-ic"></span>Web Trader<span class="mega-caret">&rsaquo;</span></a>
-            <a class="mega-item"><span class="mega-ic"></span>Mobile Apps</a>
-            <a class="mega-item"><span class="mega-ic"></span>Pro-Link</a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">MT5</span><span class="mega-desc">Multi-asset, depth of market</span></span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">MT4</span><span class="mega-desc">The classic, proven terminal</span></span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Copy Trade</span><span class="mega-desc">Auto-mirror on MT4 &amp; MT5</span></span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">STAR Copy<span class="mega-badge">New</span></span><span class="mega-desc">Social copy-trading, reinvented</span></span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">STAR Web Trading<span class="mega-badge">New</span></span><span class="mega-desc">Full terminal in your browser</span></span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Web Trader</span><span class="mega-desc">Trade any device — no install</span></span><span class="mega-caret">&rsaquo;</span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Mobile Apps</span><span class="mega-desc">iOS &amp; Android trading apps</span></span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Pro-Link</span><span class="mega-desc">FIX &amp; REST for institutions</span></span></a>
           </div>
           <div class="mega-col">
             <div class="mega-h">PRODUCTS</div>
-            <a class="mega-item"><span class="mega-ic"></span>Forex</a>
-            <a class="mega-item"><span class="mega-ic"></span>CFD</a>
-            <a class="mega-item" id="megaCommodities"><span class="mega-ic"></span>Commodities<span class="mega-caret">&#9662;</span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Forex</span><span class="mega-desc">60+ currency pairs</span></span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">CFD</span><span class="mega-desc">Go long or short with leverage</span></span></a>
+            <a class="mega-item" id="megaCommodities"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Commodities</span><span class="mega-desc">Energies, metals &amp; agriculture</span></span><span class="mega-caret">&#9662;</span></a>
             <div class="mega-sub" id="megaCommoditiesSub">
-              <div class="mega-subitem"><span class="mega-sic"></span>Energies<span class="arr">&rsaquo;</span></div>
-              <div class="mega-subitem"><span class="mega-sic"></span>Metals<span class="arr">&rsaquo;</span></div>
-              <div class="mega-subitem"><span class="mega-sic"></span>Agriculture<span class="arr">&rsaquo;</span></div>
+              <div class="mega-subitem"><span class="mega-sic"></span><span class="mega-txt"><span class="mega-name">Energies</span><span class="mega-desc">Oil, gas &amp; fuels</span></span><span class="arr">&rsaquo;</span></div>
+              <div class="mega-subitem"><span class="mega-sic"></span><span class="mega-txt"><span class="mega-name">Metals</span><span class="mega-desc">Gold, silver, platinum</span></span><span class="arr">&rsaquo;</span></div>
+              <div class="mega-subitem"><span class="mega-sic"></span><span class="mega-txt"><span class="mega-name">Agriculture</span><span class="mega-desc">Softs &amp; grains</span></span><span class="arr">&rsaquo;</span></div>
             </div>
-            <a class="mega-item"><span class="mega-ic"></span>Indices</a>
-            <a class="mega-item"><span class="mega-ic"></span>Shares</a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Indices</span><span class="mega-desc">Global stock indices</span></span></a>
+            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Shares</span><span class="mega-desc">1,000+ global stocks</span></span></a>
           </div>
         </div>
       </div>
