@@ -3,7 +3,11 @@
 //   npm i framer-motion
 //
 // A self-contained "Register & Verify" card micro-interaction.
-// It auto-plays a demo loop and also restarts on click of the button.
+// Auto-plays a demo loop and also restarts on click of the button.
+//
+// States
+//   Button:  VERIFY  ->  VERIFYING...  ->  VERIFIED
+//   Helper:  (idle)  ->  Account details secured  ->  Registration complete
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -35,10 +39,7 @@ const innerCardVariants = {
 };
 
 const fieldVariants = {
-  idle: {
-    borderColor: "#E5E7EB",
-    boxShadow: "0 0 0 0 rgba(15,98,254,0)",
-  },
+  idle: { borderColor: "#E5E7EB", boxShadow: "0 0 0 0 rgba(15,98,254,0)" },
   glow: {
     borderColor: "#0F62FE",
     boxShadow: "0 0 0 3px rgba(15,98,254,0.18)",
@@ -51,11 +52,16 @@ const fieldVariants = {
   },
 };
 
-// swap transition for the button label states
 const labelVariants = {
   initial: { opacity: 0, y: 6 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.22 } },
   exit: { opacity: 0, y: -6, transition: { duration: 0.18 } },
+};
+
+const helperVariants = {
+  initial: { opacity: 0, y: 4 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.25, ease: EASE } },
+  exit: { opacity: 0, y: -4, transition: { duration: 0.18 } },
 };
 
 const pulseVariants = {
@@ -73,11 +79,10 @@ const pulseVariants = {
 
 export default function RegisterVerifyCard() {
   const [filled, setFilled] = useState(0); // number of completed fields
-  const [active, setActive] = useState(-1); // index of the field currently glowing
-  const [status, setStatus] = useState("idle"); // "idle" | "verifying" | "verified"
+  const [active, setActive] = useState(-1); // field currently glowing
+  const [status, setStatus] = useState("idle"); // idle | verifying | verified
 
-  // A run id lets us cancel any in-flight sequence (unmount or restart on click).
-  const runId = useRef(0);
+  const runId = useRef(0); // lets us cancel an in-flight sequence
 
   const start = useCallback(() => {
     const id = ++runId.current;
@@ -104,12 +109,12 @@ export default function RegisterVerifyCard() {
       await sleep(280);
       if (!alive()) return;
 
-      // 3. verifying (loading dots)
+      // 3. verifying — button "VERIFYING...", helper "Account details secured"
       setStatus("verifying");
-      await sleep(1500);
+      await sleep(1600);
       if (!alive()) return;
 
-      // 4. verified (blue gradient + check + success pulse)
+      // 4. verified — blue gradient + check, helper "Registration complete", pulse
       setStatus("verified");
       await sleep(2000);
       if (!alive()) return;
@@ -119,11 +124,10 @@ export default function RegisterVerifyCard() {
     })();
   }, []);
 
-  // Kick off the demo loop; cancel on unmount.
   useEffect(() => {
     start();
     return () => {
-      runId.current++;
+      runId.current++; // cancel any in-flight loop on unmount
     };
   }, [start]);
 
@@ -207,7 +211,6 @@ export default function RegisterVerifyCard() {
                   animate={state}
                   className="relative h-9 overflow-hidden rounded-[10px] border bg-white"
                 >
-                  {/* fill sweep */}
                   <motion.span
                     aria-hidden
                     className="absolute inset-0 origin-left bg-[#EAECF3]"
@@ -215,7 +218,6 @@ export default function RegisterVerifyCard() {
                     animate={{ scaleX: isFilled ? 1 : 0 }}
                     transition={{ duration: 0.35, ease: EASE }}
                   />
-                  {/* "typed" line */}
                   <motion.span
                     aria-hidden
                     className="absolute left-2 top-1/2 h-[6px] -translate-y-1/2 rounded-full bg-[#C9CCD6]"
@@ -291,9 +293,41 @@ export default function RegisterVerifyCard() {
               </AnimatePresence>
             </span>
           </motion.button>
+
+          {/* Helper / status line (reserved height to avoid layout shift) */}
+          <div className="mt-3 flex h-4 items-center justify-center">
+            <AnimatePresence mode="wait" initial={false}>
+              {status === "verifying" && (
+                <motion.span
+                  key="secured"
+                  variants={helperVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  className="flex items-center gap-1.5 text-[11px] font-medium text-[#8B8E99]"
+                >
+                  <LockIcon />
+                  Account details secured
+                </motion.span>
+              )}
+              {status === "verified" && (
+                <motion.span
+                  key="complete"
+                  variants={helperVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  className="flex items-center gap-1.5 text-[11px] font-semibold text-[#0F62FE]"
+                >
+                  <MiniCheck />
+                  Registration complete
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </div>
         </motion.div>
 
-        {/* Sub-copy (optional — matches the wireframe context) */}
+        {/* Sub-copy (matches the wireframe context) */}
         <div className="mt-5 px-1">
           <h3 className="text-[17px] font-extrabold tracking-tight text-[#24262F]">
             Register &amp; Verify
@@ -348,5 +382,40 @@ function CheckIcon() {
     >
       <path d="M5 12l5 5 9-11" />
     </motion.svg>
+  );
+}
+
+function LockIcon() {
+  return (
+    <svg
+      width="11"
+      height="11"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#8B8E99"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="4" y="11" width="16" height="9" rx="2" />
+      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+    </svg>
+  );
+}
+
+function MiniCheck() {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#0F62FE"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12l5 5 9-11" />
+    </svg>
   );
 }

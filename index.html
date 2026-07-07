@@ -180,6 +180,9 @@
   .st-pulse{position:absolute;inset:0;border-radius:14px;border:2px solid var(--ink);opacity:0;animation:stvPulse 5.5s ease-in-out infinite;pointer-events:none}
   @keyframes stvPulse{0%,66%{opacity:0;transform:scale(.98)}73%{opacity:.28}88%{opacity:0;transform:scale(1.03)}100%{opacity:0}}
 
+  /* ---- Markets mobile accordion (desktop shows everything) ---- */
+  .chev{display:none;flex:none;color:var(--muted);transition:transform .25s ease}
+
   /* ================= RESPONSIVE ================= */
   /* keep gutters once the canvas is narrower than the content width */
   @media (max-width:1240px){
@@ -214,6 +217,14 @@
     /* bento fixed rows -> auto; reset explicit placements */
     [style*="grid-template-rows:250px 250px"]{grid-template-rows:auto !important}
     [style*="grid-column"]{grid-column:auto !important;grid-row:auto !important}
+
+    /* Markets: collapse categories into an accordion (Metals open) */
+    .mkt-head{cursor:pointer;user-select:none}
+    .mkt-card .chev{display:block}
+    .mkt-card > :not(.mkt-head){display:none !important}
+    .mkt-card.open > :not(.mkt-head){display:flex !important}
+    .mkt-card.open .chev{transform:rotate(180deg)}
+    .mkt-metals{order:-1}
 
     /* drop vertical dividers once stacked */
     [style*="border-left:1px solid var(--line2)"],
@@ -437,8 +448,8 @@
 
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px">
         <!-- INDICES -->
-        <div style="grid-column:2;grid-row:2;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column">
-          <div style="font:700 12px/1 var(--ui);letter-spacing:1.5px;color:var(--ink)">INDICES</div>
+        <div class="mkt-card" style="grid-column:2;grid-row:2;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column">
+          <div class="mkt-head" style="display:flex;align-items:center;justify-content:space-between"><span style="font:700 12px/1 var(--ui);letter-spacing:1.5px;color:var(--ink)">INDICES</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
           <div style="display:flex;flex-direction:column;margin-top:16px">
             <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-top:1px solid var(--line)"><div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;border-radius:50%;background:#DEDEE3"></span><div><div style="font:700 13px/1 var(--ui);color:var(--ink)">US500</div><div style="font:10px/1 var(--ui);color:var(--muted);margin-top:5px">S&amp;P 500 Index</div></div></div><div style="text-align:right"><div style="font:700 13px/1 var(--mono);color:var(--ink)">5,681</div><div style="font:600 10px/1 var(--ui);color:var(--ink2);margin-top:5px">+0.58%</div></div></div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-top:1px solid var(--line)"><div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;border-radius:50%;background:#DEDEE3"></span><div><div style="font:700 13px/1 var(--ui);color:var(--ink)">NAS100</div><div style="font:10px/1 var(--ui);color:var(--muted);margin-top:5px">Nasdaq 100</div></div></div><div style="text-align:right"><div style="font:700 13px/1 var(--mono);color:var(--ink)">30,157.92</div><div style="font:600 10px/1 var(--ui);color:var(--ink2);margin-top:5px">-0.45%</div></div></div>
@@ -446,8 +457,8 @@
           </div>
         </div>
         <!-- FOREX -->
-        <div style="grid-column:3;grid-row:1;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column">
-          <div style="font:700 12px/1 var(--ui);letter-spacing:1.5px;color:var(--ink)">FOREX</div>
+        <div class="mkt-card" style="grid-column:3;grid-row:1;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column">
+          <div class="mkt-head" style="display:flex;align-items:center;justify-content:space-between"><span style="font:700 12px/1 var(--ui);letter-spacing:1.5px;color:var(--ink)">FOREX</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
           <div style="display:flex;flex-direction:column;margin-top:16px">
             <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-top:1px solid var(--line)"><div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;border-radius:50%;background:#DEDEE3"></span><div><div style="font:700 13px/1 var(--ui);color:var(--ink)">EUR/USD</div><div style="font:10px/1 var(--ui);color:var(--muted);margin-top:5px">Euro Dollar</div></div></div><div style="text-align:right"><div style="font:700 13px/1 var(--mono);color:var(--ink)">1.0842</div><div style="font:600 10px/1 var(--ui);color:var(--ink2);margin-top:5px">+0.03%</div></div></div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-top:1px solid var(--line)"><div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;border-radius:50%;background:#DEDEE3"></span><div><div style="font:700 13px/1 var(--ui);color:var(--ink)">GBP/USD</div><div style="font:10px/1 var(--ui);color:var(--muted);margin-top:5px">Pound Dollar</div></div></div><div style="text-align:right"><div style="font:700 13px/1 var(--mono);color:var(--ink)">1.2715</div><div style="font:600 10px/1 var(--ui);color:var(--ink2);margin-top:5px">-0.11%</div></div></div>
@@ -455,8 +466,8 @@
           </div>
         </div>
         <!-- ETF -->
-        <div style="grid-column:3;grid-row:2;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column">
-          <div style="font:700 12px/1 var(--ui);letter-spacing:1.5px;color:var(--ink)">ETF</div>
+        <div class="mkt-card" style="grid-column:3;grid-row:2;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column">
+          <div class="mkt-head" style="display:flex;align-items:center;justify-content:space-between"><span style="font:700 12px/1 var(--ui);letter-spacing:1.5px;color:var(--ink)">ETF</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
           <div style="display:flex;flex-direction:column;margin-top:16px">
             <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-top:1px solid var(--line)"><div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;border-radius:50%;background:#DEDEE3"></span><div><div style="font:700 13px/1 var(--ui);color:var(--ink)">SPY</div><div style="font:10px/1 var(--ui);color:var(--muted);margin-top:5px">S&amp;P 500 ETF</div></div></div><div style="text-align:right"><div style="font:700 13px/1 var(--mono);color:var(--ink)">568.10</div><div style="font:600 10px/1 var(--ui);color:var(--ink2);margin-top:5px">+0.55%</div></div></div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-top:1px solid var(--line)"><div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;border-radius:50%;background:#DEDEE3"></span><div><div style="font:700 13px/1 var(--ui);color:var(--ink)">QQQ</div><div style="font:10px/1 var(--ui);color:var(--muted);margin-top:5px">Nasdaq 100 ETF</div></div></div><div style="text-align:right"><div style="font:700 13px/1 var(--mono);color:var(--ink)">486.30</div><div style="font:600 10px/1 var(--ui);color:var(--ink2);margin-top:5px">+0.72%</div></div></div>
@@ -464,10 +475,10 @@
           </div>
         </div>
         <!-- METALS (wide) -->
-        <div style="grid-column:1 / span 2;grid-row:1;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px 24px">
-          <div style="display:flex;align-items:center;justify-content:space-between">
+        <div class="mkt-card mkt-metals open" style="grid-column:1 / span 2;grid-row:1;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px 24px">
+          <div class="mkt-head" style="display:flex;align-items:center;justify-content:space-between">
             <span style="font:700 12px/1 var(--ui);letter-spacing:1.5px;color:var(--ink)">METALS</span>
-            <span class="clickable" style="font:600 11px/1 var(--ui);color:var(--muted)">View all</span>
+            <span class="mkt-right" style="display:flex;align-items:center;gap:10px"><span class="clickable" style="font:600 11px/1 var(--ui);color:var(--muted)">View all</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </div>
           <div style="display:flex;flex-direction:column;margin-top:8px">
             <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--line)"><div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;border-radius:50%;background:#DEDEE3"></span><span style="font:700 14px/1 var(--ui);color:var(--ink)">XAU/USD · Gold</span></div><div style="display:flex;align-items:center;gap:26px"><span style="font:700 14px/1 var(--mono);color:var(--ink)">3,241.80</span><span style="font:600 12px/1 var(--ui);color:var(--ink2);width:74px;text-align:right">+0.82%</span></div></div>
@@ -477,8 +488,8 @@
           </div>
         </div>
         <!-- SHARES -->
-        <div style="grid-column:1;grid-row:2;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column">
-          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:700 12px/1 var(--ui);letter-spacing:1.5px;color:var(--ink)">SHARES</span><span class="clickable" style="font:600 10px/1 var(--ui);color:var(--muted)">View all</span></div>
+        <div class="mkt-card" style="grid-column:1;grid-row:2;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column">
+          <div class="mkt-head" style="display:flex;align-items:center;justify-content:space-between"><span style="font:700 12px/1 var(--ui);letter-spacing:1.5px;color:var(--ink)">SHARES</span><span class="mkt-right" style="display:flex;align-items:center;gap:10px"><span class="clickable" style="font:600 10px/1 var(--ui);color:var(--muted)">View all</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>
           <div style="display:flex;flex-direction:column;margin-top:16px">
             <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-top:1px solid var(--line)"><div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;border-radius:50%;background:#DEDEE3"></span><span style="font:700 13px/1 var(--ui);color:var(--ink)">AAPL</span></div><div style="text-align:right"><div style="font:700 13px/1 var(--mono);color:var(--ink)">229.40</div><div style="font:600 10px/1 var(--ui);color:var(--ink2);margin-top:5px">+0.91%</div></div></div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-top:1px solid var(--line)"><div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;border-radius:50%;background:#DEDEE3"></span><span style="font:700 13px/1 var(--ui);color:var(--ink)">TSLA</span></div><div style="text-align:right"><div style="font:700 13px/1 var(--mono);color:var(--ink)">251.60</div><div style="font:600 10px/1 var(--ui);color:var(--ink2);margin-top:5px">-0.42%</div></div></div>
@@ -962,6 +973,14 @@
     link.addEventListener('click', function(e){ e.stopPropagation(); setMenu(link.getAttribute('data-menu')); });
   });
   document.addEventListener('click', function(){ if (openMenu){ openMenu = null; dd.style.display = 'none'; } });
+
+  /* ---------- Markets mobile accordion ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.mkt-head'), function (head) {
+    head.addEventListener('click', function () {
+      // only meaningful on mobile (chevron hidden / body always shown on desktop)
+      head.parentElement.classList.toggle('open');
+    });
+  });
 
   /* ---------- mobile hamburger menu ---------- */
   var burger = document.getElementById('navBurger');
