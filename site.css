@@ -393,3 +393,25 @@
     .ao-badge{right:12px}
   }
   @media (max-width:760px){ .ao-ready-grid{grid-template-columns:1fr;gap:16px} .ao-ready-panel{padding:38px 26px} }
+
+  /* ---- hero signup-card micro-interaction ---- */
+  .ao-field .bx{position:relative;overflow:hidden}
+  .ao-field .bx .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:#DDDDE3;border-right:2px solid var(--ink2)}
+  .ao-card .f1{animation:aoF1 7s ease-in-out infinite}
+  .ao-card .f2{animation:aoF2 7s ease-in-out infinite}
+  .ao-card .f3{animation:aoF3 7s ease-in-out infinite}
+  .ao-dots i.d2{animation:aoDot2 7s ease-in-out infinite}
+  .ao-dots i.d3{animation:aoDot3 7s ease-in-out infinite}
+  .ao-cbtn{animation:aoBtn 7s ease-in-out infinite}
+  .ao-badge{opacity:0;animation:aoBadge 7s ease-in-out infinite}
+  @keyframes aoF1{0%,3%{width:0}18%,90%{width:72%}96%,100%{width:0}}
+  @keyframes aoF2{0%,25%{width:0}40%,90%{width:60%}96%,100%{width:0}}
+  @keyframes aoF3{0%,47%{width:0}62%,90%{width:82%}96%,100%{width:0}}
+  @keyframes aoDot2{0%,34%{background:var(--line2)}40%,94%{background:var(--ink)}100%{background:var(--line2)}}
+  @keyframes aoDot3{0%,56%{background:var(--line2)}62%,94%{background:var(--ink)}100%{background:var(--line2)}}
+  @keyframes aoBtn{0%,68%{transform:scaleX(1);filter:none}74%{transform:scaleX(.98)}80%,94%{transform:scaleX(1)}100%{}}
+  @keyframes aoBadge{0%,72%{opacity:0;transform:translateY(10px) scale(.92)}82%,93%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(10px) scale(.92)}}
+  /* ---- ready-to-trade cards grid ---- */
+  .ao-nxt-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px;text-align:left}
+  @media (max-width:760px){ .ao-nxt-grid{grid-template-columns:1fr} }
+  @media (prefers-reduced-motion: reduce){ .ao-card .fill,.ao-dots i,.ao-cbtn,.ao-badge{animation:none} .ao-badge{opacity:1;transform:none} }
