@@ -613,3 +613,7 @@
   .hv-pm{display:flex;gap:9px;margin-top:14px}
   .hv-chip{flex:1;height:36px;border-radius:10px;border:1px solid var(--line);background:#fff}
   .hv-chip.on{border-color:var(--ink);background:#F4F4F6}
+
+  /* banner hero image: no background shadow/glow */
+  .ao-card{box-shadow:none}
+  .ao-visual::before{display:none}
