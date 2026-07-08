@@ -206,6 +206,16 @@
   .m2-feat .d{width:26px;height:26px;border-radius:7px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none}
   .m2-feat .v{margin-left:auto;font:700 11px/1 var(--mono);color:var(--ink)}
 
+  /* ---- mega right-panel link lists ---- */
+  .mm-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:12px}
+  .mm-grid.one{grid-template-columns:1fr}
+  .mm-link{display:flex;align-items:flex-start;gap:11px;padding:9px 10px;border-radius:10px;text-decoration:none;cursor:pointer}
+  .mm-link:hover{background:#F5F5F7}
+  .mm-ic{width:30px;height:30px;border-radius:8px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none}
+  .mm-tt{display:flex;align-items:center;gap:6px;font:700 12px/1.15 var(--ui);color:var(--ink)}
+  .mm-ss{display:block;font:400 9.5px/1.35 var(--ui);color:var(--muted);margin-top:3px}
+
+
   /* ---- Markets / Platforms mobile accordion (desktop shows everything) ---- */
   .chev{display:none;flex:none;color:var(--muted);transition:transform .25s ease}
   .plat-txt{min-width:0}
@@ -354,8 +364,11 @@
 .faq-chev{flex:none;color:var(--muted);transition:transform .25s ease}
 .faq-item.open .faq-chev{transform:rotate(180deg)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .32s ease}
-.faq-item.open .faq-a{max-height:360px}
-.faq-a p{margin:0;padding:0 22px 20px;font:13px/1.65 var(--ui);color:var(--muted)}
+.faq-item.open .faq-a{max-height:1000px}
+.faq-a .in{padding:2px 22px 20px;font:13px/1.65 var(--ui);color:var(--muted)}
+.faq-a .in p{margin:0 0 10px}
+.faq-a .in p:last-child{margin-bottom:0}
+.faq-a .in .lead{color:var(--ink2);font-weight:600}
 /* sub-page hero + doc/next cards */
 .ao-chip{display:inline-flex;align-items:center;gap:7px;font:600 11px/1 var(--ui);color:var(--ink2)}
 .ao-chip .dot{width:16px;height:16px;border-radius:5px;background:var(--ink);display:inline-flex;align-items:center;justify-content:center;flex:none}
