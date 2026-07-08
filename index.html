@@ -279,7 +279,10 @@
     /* fluid fixed-width blocks */
     [style*="width:1080px"]{width:100% !important}
     [style*="width:460px"]{width:90vw !important;max-width:460px}
-    .media-grid>div{flex:0 0 80% !important}   /* one rating card per view (with a peek) on mobile */
+    /* Global Media: one fixed-width 300px card, centered per view */
+    .media-grid.scroll-x{scroll-padding-left:0 !important;
+      padding-left:max(0px,calc((100% - 300px)/2));padding-right:max(0px,calc((100% - 300px)/2))}
+    .media-grid>div{flex:0 0 300px !important;max-width:calc(100vw - 48px) !important;scroll-snap-align:center}
 
     /* horizontal card scrollers on mobile (reduce vertical scroll) */
     .scroll-x{display:flex !important;flex-wrap:nowrap !important;align-items:stretch;
