@@ -181,30 +181,37 @@
   @keyframes stvPulse{0%,66%{opacity:0;transform:scale(.98)}73%{opacity:.28}88%{opacity:0;transform:scale(1.03)}100%{opacity:0}}
 
   /* ---- Trading mega menu ---- */
-  .mega-panel{position:absolute;left:50%;top:10px;transform:translateX(-50%);width:900px;max-width:calc(100vw - 32px);
+  .mega-panel{position:absolute;left:50%;top:10px;transform:translateX(-50%);width:920px;max-width:calc(100vw - 32px);
               background:#fff;border:1px solid #E4E4E8;border-radius:16px;box-shadow:0 18px 44px rgba(0,0,0,.10);
-              padding:22px;display:grid;grid-template-columns:1fr 1fr 1fr}
-  .mega-col{padding:0 14px}
-  .mega-mid{border-left:1px solid #EDEDF0;border-right:1px solid #EDEDF0}
-  .mega-h{font:700 9px/1 var(--ui);letter-spacing:1.5px;color:var(--faint);padding:2px 10px 12px}
-  .mega-item{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:10px;cursor:pointer;
-             font:600 13px/1 var(--ui);color:var(--ink);text-decoration:none}
-  .mega-item:hover{background:#F7F7F9}
-  .mega-ic{width:32px;height:32px;border-radius:8px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none}
-  .mega-txt{display:flex;flex-direction:column;gap:3px;min-width:0}
-  .mega-name{display:flex;align-items:center;gap:6px;font:700 13px/1.15 var(--ui);color:var(--ink)}
-  .mega-desc{font:400 9.5px/1.35 var(--ui);color:var(--muted)}
-  .mega-subitem .mega-name{font:700 12px/1.15 var(--ui);color:var(--ink2)}
+              padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
   .mega-badge{font:700 8px/1 var(--ui);letter-spacing:.4px;color:#fff;background:var(--ink);border-radius:5px;padding:4px 7px}
-  .mega-caret{margin-left:auto;color:var(--faint);font-size:14px;line-height:1;transition:transform .2s ease}
-  #megaCommodities.open .mega-caret{transform:rotate(180deg)}
-  .mega-sub{display:none;padding:2px 0 4px 42px}
-  .mega-sub.show{display:block}
-  .mega-subitem{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;
-                font:600 12px/1 var(--ui);color:var(--ink2);cursor:pointer}
-  .mega-subitem:hover{background:#F7F7F9}
-  .mega-sic{width:22px;height:22px;border-radius:6px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none}
-  .mega-subitem .arr{margin-left:auto;color:var(--faint)}
+  /* left: item list */
+  .m2-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:12px;cursor:pointer;text-decoration:none}
+  .m2-item:hover,.m2-item.active{background:#F5F5F7}
+  .m2-ic{width:34px;height:34px;border-radius:9px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none;display:flex;align-items:center;justify-content:center;color:#8A8A92}
+  .m2-body{min-width:0;flex:1}
+  .m2-title{display:flex;align-items:center;gap:7px;font:700 13.5px/1.2 var(--ui);color:var(--ink)}
+  .m2-sub{display:block;font:400 10px/1.45 var(--ui);color:var(--muted);margin-top:4px}
+  .m2-chev{margin-left:auto;align-self:center;color:var(--faint);font-size:16px;line-height:1;opacity:0;transition:opacity .15s}
+  .m2-item.active .m2-chev,.m2-item:hover .m2-chev{opacity:1}
+  /* right: detail panel */
+  .mega-right{border-left:1px solid #EDEDF0;padding:12px 6px 8px 22px}
+  .m2-panel{display:none}
+  .m2-panel.active{display:block}
+  .m2-ph{font:700 15px/1.2 var(--ui);color:var(--ink)}
+  .m2-psub{font:400 11px/1.45 var(--ui);color:var(--muted);margin-top:5px}
+  .m2-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid #EEEEF1}
+  .m2-rank{width:24px;height:24px;border-radius:6px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none;display:flex;align-items:center;justify-content:center;font:700 9px/1 var(--ui);color:#8A8A92}
+  .m2-av{width:30px;height:30px;border-radius:50%;background:#DEDEE3;flex:none}
+  .m2-name{flex:1;font:700 12.5px/1.2 var(--ui);color:var(--ink);min-width:0}
+  .m2-roi-l{font:9px/1 var(--ui);color:var(--faint)}
+  .m2-roi{font:700 12px/1 var(--mono);color:#2EC081;margin-left:8px}
+  .m2-block{margin-top:16px}
+  .m2-bt{font:700 13px/1.2 var(--ui);color:var(--ink);display:flex;align-items:center;gap:7px}
+  .m2-bs{font:400 10.5px/1.45 var(--ui);color:var(--muted);margin-top:4px}
+  .m2-feat{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid #EEEEF1;font:600 12.5px/1.3 var(--ui);color:var(--ink2)}
+  .m2-feat .d{width:26px;height:26px;border-radius:7px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none}
+  .m2-feat .v{margin-left:auto;font:700 11px/1 var(--mono);color:var(--ink)}
 
   /* ---- Markets / Platforms mobile accordion (desktop shows everything) ---- */
   .chev{display:none;flex:none;color:var(--muted);transition:transform .25s ease}
@@ -418,39 +425,101 @@
         </div>
       </div>
 
-      <!-- Trading mega menu -->
+      <!-- Trading mega menu (two-panel) -->
       <div id="megaTrading" style="position:relative;height:0;z-index:9;display:none">
         <div class="mega-panel">
-          <div class="mega-col">
-            <div class="mega-h">GETTING STARTED</div>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Account Opening</span><span class="mega-desc">Open in minutes, fully regulated</span></span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Trading Account</span><span class="mega-desc">Standard, ECN &amp; Pro accounts</span></span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Prime ECN</span><span class="mega-desc">Ultra-tight institutional spreads</span></span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Funding &amp; Withdrawal</span><span class="mega-desc">Fast, secure — deposit from $50</span></span></a>
+          <div class="mega-left">
+        <a class="m2-item active" data-panel="p-copy">
+          <span class="m2-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg></span>
+          <span class="m2-body"><span class="m2-title">STAR Copy <span class="mega-badge">New</span></span><span class="m2-sub">Let top traders work for you</span></span>
+          <span class="m2-chev">&rsaquo;</span>
+        </a>
+        <a class="m2-item" data-panel="p-web">
+          <span class="m2-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 20h8"/></svg></span>
+          <span class="m2-body"><span class="m2-title">STAR Web Trading <span class="mega-badge">New</span></span><span class="m2-sub">Full terminal in your browser</span></span>
+          <span class="m2-chev">&rsaquo;</span>
+        </a>
+        <a class="m2-item" data-panel="p-mirror">
+          <span class="m2-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4M21 6H9a4 4 0 0 0-4 4M7 22l-4-4 4-4M3 18h12a4 4 0 0 0 4-4"/></svg></span>
+          <span class="m2-body"><span class="m2-title">Copy Trade </span><span class="m2-sub">Auto-mirror on MT4 &amp; MT5</span></span>
+          <span class="m2-chev">&rsaquo;</span>
+        </a>
+        <a class="m2-item" data-panel="p-markets">
+          <span class="m2-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V5M4 15h4M8 9v8M20 20V9M20 12h-4M16 6v9"/></svg></span>
+          <span class="m2-body"><span class="m2-title">Markets </span><span class="m2-sub">Forex, indices, shares, metals &amp; ETFs</span></span>
+          <span class="m2-chev">&rsaquo;</span>
+        </a>
+        <a class="m2-item" data-panel="p-platforms">
+          <span class="m2-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+          <span class="m2-body"><span class="m2-title">Platforms </span><span class="m2-sub">MT5, MT4, Web Trader &amp; apps</span></span>
+          <span class="m2-chev">&rsaquo;</span>
+        </a>
+        <a class="m2-item" data-panel="p-prolink">
+          <span class="m2-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6M15 2v6M7 8h10v3a5 5 0 0 1-10 0zM12 16v6"/></svg></span>
+          <span class="m2-body"><span class="m2-title">Pro-Link </span><span class="m2-sub">FIX &amp; REST for institutions</span></span>
+          <span class="m2-chev">&rsaquo;</span>
+        </a>
           </div>
-          <div class="mega-col mega-mid">
-            <div class="mega-h">PLATFORMS</div>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">MT5</span><span class="mega-desc">Multi-asset, depth of market</span></span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">MT4</span><span class="mega-desc">The classic, proven terminal</span></span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Copy Trade</span><span class="mega-desc">Auto-mirror on MT4 &amp; MT5</span></span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">STAR Copy<span class="mega-badge">New</span></span><span class="mega-desc">Social copy-trading, reinvented</span></span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">STAR Web Trading<span class="mega-badge">New</span></span><span class="mega-desc">Full terminal in your browser</span></span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Web Trader</span><span class="mega-desc">Trade any device — no install</span></span><span class="mega-caret">&rsaquo;</span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Mobile Apps</span><span class="mega-desc">iOS &amp; Android trading apps</span></span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Pro-Link</span><span class="mega-desc">FIX &amp; REST for institutions</span></span></a>
+          <div class="mega-right">
+        <div class="m2-panel active" id="p-copy">
+          <div class="m2-ph">STAR Copy</div>
+          <div class="m2-psub">Follow and mirror the top STARTRADER traders.</div>
+          <div style="margin-top:8px">
+            <div class="m2-row"><span class="m2-rank">01</span><span class="m2-av"></span><span class="m2-name">James K.</span><span class="m2-roi-l">7d ROI</span><span class="m2-roi">+41.8%</span></div>
+            <div class="m2-row"><span class="m2-rank">02</span><span class="m2-av"></span><span class="m2-name">Amira S.</span><span class="m2-roi-l">7d ROI</span><span class="m2-roi">+33.5%</span></div>
+            <div class="m2-row"><span class="m2-rank">03</span><span class="m2-av"></span><span class="m2-name">Daniel R.</span><span class="m2-roi-l">7d ROI</span><span class="m2-roi">+28.9%</span></div>
           </div>
-          <div class="mega-col">
-            <div class="mega-h">PRODUCTS</div>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Forex</span><span class="mega-desc">60+ currency pairs</span></span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">CFD</span><span class="mega-desc">Go long or short with leverage</span></span></a>
-            <a class="mega-item" id="megaCommodities"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Commodities</span><span class="mega-desc">Energies, metals &amp; agriculture</span></span><span class="mega-caret">&#9662;</span></a>
-            <div class="mega-sub" id="megaCommoditiesSub">
-              <div class="mega-subitem"><span class="mega-sic"></span><span class="mega-txt"><span class="mega-name">Energies</span><span class="mega-desc">Oil, gas &amp; fuels</span></span><span class="arr">&rsaquo;</span></div>
-              <div class="mega-subitem"><span class="mega-sic"></span><span class="mega-txt"><span class="mega-name">Metals</span><span class="mega-desc">Gold, silver, platinum</span></span><span class="arr">&rsaquo;</span></div>
-              <div class="mega-subitem"><span class="mega-sic"></span><span class="mega-txt"><span class="mega-name">Agriculture</span><span class="mega-desc">Softs &amp; grains</span></span><span class="arr">&rsaquo;</span></div>
-            </div>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Indices</span><span class="mega-desc">Global stock indices</span></span></a>
-            <a class="mega-item"><span class="mega-ic"></span><span class="mega-txt"><span class="mega-name">Shares</span><span class="mega-desc">1,000+ global stocks</span></span></a>
+          <div class="m2-block"><div class="m2-bt">STAR Copy Pro</div><div class="m2-bs">Beyond simple copying — advanced controls.</div></div>
+          <div class="m2-block"><div class="m2-bt">STAR Copy TradFi <span class="mega-badge">New</span></div><div class="m2-bs">Copy TradFi strategies with ease.</div></div>
+        </div>
+        <div class="m2-panel" id="p-web">
+          <div class="m2-ph">STAR Web Trading</div>
+          <div class="m2-psub">The full terminal in your browser — nothing to install.</div>
+          <div style="margin-top:8px">
+            <div class="m2-feat"><span class="d"></span>Live charts &amp; indicators</div>
+            <div class="m2-feat"><span class="d"></span>One-click order execution</div>
+            <div class="m2-feat"><span class="d"></span>Average execution<span class="v">18ms</span></div>
+            <div class="m2-feat"><span class="d"></span>Daily traders<span class="v">3.5k+</span></div>
+          </div>
+        </div>
+        <div class="m2-panel" id="p-mirror">
+          <div class="m2-ph">Copy Trade</div>
+          <div class="m2-psub">Auto-mirror strategies on MT4 &amp; MT5.</div>
+          <div style="margin-top:8px">
+            <div class="m2-feat"><span class="d"></span>Mirror on MT4 &amp; MT5</div>
+            <div class="m2-feat"><span class="d"></span>Average win rate<span class="v">60%</span></div>
+            <div class="m2-feat"><span class="d"></span>Active traders<span class="v">2,450</span></div>
+          </div>
+        </div>
+        <div class="m2-panel" id="p-markets">
+          <div class="m2-ph">Markets</div>
+          <div class="m2-psub">1,000+ instruments across every asset class.</div>
+          <div style="margin-top:8px">
+            <div class="m2-feat"><span class="d"></span>Forex<span class="v">60+ pairs</span></div>
+            <div class="m2-feat"><span class="d"></span>CFDs<span class="v">long / short</span></div>
+            <div class="m2-feat"><span class="d"></span>Commodities<span class="v">metals · energy</span></div>
+            <div class="m2-feat"><span class="d"></span>Indices &amp; Shares<span class="v">1,000+</span></div>
+          </div>
+        </div>
+        <div class="m2-panel" id="p-platforms">
+          <div class="m2-ph">Platforms</div>
+          <div class="m2-psub">Trade your way, on any device.</div>
+          <div style="margin-top:8px">
+            <div class="m2-feat"><span class="d"></span>MetaTrader 5</div>
+            <div class="m2-feat"><span class="d"></span>MetaTrader 4</div>
+            <div class="m2-feat"><span class="d"></span>Web Trader</div>
+            <div class="m2-feat"><span class="d"></span>Mobile Apps</div>
+          </div>
+        </div>
+        <div class="m2-panel" id="p-prolink">
+          <div class="m2-ph">Pro-Link</div>
+          <div class="m2-psub">FIX &amp; REST bridge for pro &amp; institutional desks.</div>
+          <div style="margin-top:8px">
+            <div class="m2-feat"><span class="d"></span>Latency<span class="v">4ms</span></div>
+            <div class="m2-feat"><span class="d"></span>Uptime<span class="v">99.99%</span></div>
+            <div class="m2-feat"><span class="d"></span>Protocol<span class="v">FIX 4.4</span></div>
+          </div>
+        </div>
           </div>
         </div>
       </div>
@@ -1142,16 +1211,22 @@
   document.addEventListener('click', closeAll);
   if (mega) mega.addEventListener('click', function(e){ e.stopPropagation(); }); // keep open when interacting inside
 
-  // Commodities expand / collapse
-  var comm = document.getElementById('megaCommodities');
-  var commSub = document.getElementById('megaCommoditiesSub');
-  if (comm && commSub) {
-    comm.addEventListener('click', function(e){
-      e.preventDefault();
-      comm.classList.toggle('open');
-      commSub.classList.toggle('show');
+  // Two-panel mega menu: hover/click a left item -> show its right detail panel
+  (function(){
+    var items = document.querySelectorAll('.m2-item');
+    if (!items.length) return;
+    function activate(it){
+      Array.prototype.forEach.call(document.querySelectorAll('.m2-item'), function(x){ x.classList.remove('active'); });
+      Array.prototype.forEach.call(document.querySelectorAll('.m2-panel'), function(p){ p.classList.remove('active'); });
+      it.classList.add('active');
+      var p = document.getElementById(it.getAttribute('data-panel'));
+      if (p) p.classList.add('active');
+    }
+    Array.prototype.forEach.call(items, function(it){
+      it.addEventListener('mouseenter', function(){ activate(it); });
+      it.addEventListener('click', function(e){ e.preventDefault(); activate(it); });
     });
-  }
+  })();
 
   /* ---------- horizontal card scrollers (arrow buttons) ---------- */
   Array.prototype.forEach.call(document.querySelectorAll('.sx-nav button'), function (btn) {
