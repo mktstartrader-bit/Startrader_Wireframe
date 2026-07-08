@@ -503,3 +503,90 @@
   .method .m-ic{width:38px;height:38px;border-radius:10px;background:#EDEDF0;border:1px solid var(--line2);flex:none}
   @media (max-width:900px){ .bento-3,.bento-4{grid-template-columns:repeat(2,1fr)} .stat-row{grid-template-columns:1fr} }
   @media (max-width:600px){ .bento,.bento-3,.bento-4{grid-template-columns:1fr} .span2{grid-column:span 1} .pg{padding:60px 0} }
+
+  /* ==================================================================
+     PREMIUM UPLIFT — elegant, high-end refinements (override layer)
+     ================================================================== */
+  :root{--accent:#0047BB;--accent2:#16E9D7;--navy:#0D0D4B}
+
+  /* smoother, staggered blur-in motion */
+  .reveal{opacity:0;transform:translateY(30px);filter:blur(4px);
+    transition:opacity .7s cubic-bezier(.16,.84,.44,1),transform .7s cubic-bezier(.16,.84,.44,1),filter .6s ease}
+  .reveal.in{opacity:1;transform:none;filter:none}
+
+  /* display typography */
+  .ao-h1{font-size:56px;line-height:1.0;letter-spacing:-2.6px}
+  .ao-h1 span{color:#B4B4BD}
+  .ao-lead{font-size:16.5px;line-height:1.75;color:#5E5E68}
+  .pg-h2{font-size:40px;line-height:1.08;letter-spacing:-1.6px}
+  .pg-sub{font-size:14.5px;line-height:1.8;color:#5E5E68}
+  .pg{padding:100px 0}
+
+  /* accent eyebrow */
+  .pg-ey{display:inline-flex;align-items:center;gap:10px;color:var(--accent);font-weight:800}
+  .pg-ey::before{content:"";width:24px;height:2px;border-radius:2px;background:var(--accent)}
+
+  /* premium bento cards */
+  .bcell{border-radius:24px;padding:32px;border:1px solid rgba(16,16,20,.07);
+    background:linear-gradient(180deg,#fff,#FBFBFD);
+    box-shadow:0 1px 2px rgba(16,16,20,.04),0 10px 34px rgba(16,16,20,.05);
+    transition:transform .35s cubic-bezier(.16,.84,.44,1),box-shadow .35s ease,border-color .35s ease}
+  .bcell::before{content:"";position:absolute;left:32px;right:32px;top:0;height:2px;border-radius:0 0 3px 3px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .35s ease}
+  .bcell:hover{transform:translateY(-6px);box-shadow:0 2px 4px rgba(16,16,20,.05),0 26px 60px rgba(16,16,20,.12);border-color:rgba(16,16,20,.12)}
+  .bcell:hover::before{opacity:1}
+  .bcell.dark{background:linear-gradient(155deg,#1A1A40,var(--navy));border-color:transparent}
+  .bcell.dark::before{background:linear-gradient(90deg,var(--accent2),var(--accent))}
+  .b-ic{border-radius:14px;background:linear-gradient(180deg,#F3F3F6,#E9E9EE);border-color:rgba(16,16,20,.06);color:#50555B}
+  .bcell.dark .b-ic{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:var(--accent2)}
+  .feat li .ck{color:var(--accent)}
+  .bcell.dark .feat li .ck{color:var(--accent2)}
+  .bcell .more{color:var(--accent)}
+  .bcell.dark .more{color:var(--accent2)}
+
+  /* stat tiles */
+  .stat{border-radius:24px;padding:46px 30px;border:1px solid rgba(16,16,20,.07);
+    background:linear-gradient(180deg,#fff,#FBFBFD);box-shadow:0 1px 2px rgba(16,16,20,.04),0 10px 34px rgba(16,16,20,.05);
+    transition:transform .35s cubic-bezier(.16,.84,.44,1),box-shadow .35s ease}
+  .stat:hover{transform:translateY(-5px);box-shadow:0 2px 4px rgba(16,16,20,.05),0 26px 60px rgba(16,16,20,.12)}
+  .stat .n{font-size:58px;letter-spacing:-3px;color:var(--navy);
+    background:linear-gradient(155deg,#1C1F2A,#0D0D4B);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .stat .l{margin-top:18px;padding-top:16px;border-top:1px solid rgba(16,16,20,.08);
+    font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;color:#8A8A92}
+
+  /* comparison table */
+  .cmp-wrap{border-radius:22px;border-color:rgba(16,16,20,.07);box-shadow:0 1px 2px rgba(16,16,20,.04),0 12px 40px rgba(16,16,20,.06)}
+  .cmp thead th{background:var(--navy);color:#fff;letter-spacing:.2px}
+  .cmp tbody tr:hover td,.cmp tbody tr:hover th{background:#FAFAFC}
+  .cmp .yes{color:var(--accent)}
+
+  /* hero visual: float + soft brand glow */
+  .ao-visual{position:relative;isolation:isolate}
+  .ao-visual::before{content:"";position:absolute;inset:-10% -8% -14% -8%;z-index:-1;
+    background:radial-gradient(58% 58% at 72% 24%,rgba(22,233,215,.22),transparent 60%),radial-gradient(52% 52% at 28% 82%,rgba(0,71,187,.20),transparent 62%);filter:blur(6px)}
+  .ao-card{border-radius:24px;box-shadow:0 2px 6px rgba(16,16,20,.06),0 40px 84px rgba(13,13,75,.16);animation:aoFloat 6s ease-in-out infinite}
+  @keyframes aoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .ao-dots i.on{background:var(--accent)}
+  .ao-cbtn{background:var(--navy)}
+  .ao-badge .tick{background:var(--accent)}
+  .ao-chip{border-radius:22px;border-color:rgba(16,16,20,.08);background:#fff;box-shadow:0 1px 2px rgba(16,16,20,.03)}
+
+  /* buttons */
+  .btn-primary{background:var(--navy);box-shadow:0 1px 2px rgba(13,13,75,.20),0 10px 24px rgba(13,13,75,.16)}
+  .btn-primary:hover{background:var(--accent)}
+  .btn-ghost{border-color:rgba(16,16,20,.14)}
+
+  /* FAQ + steps + help + info + methods */
+  .faq-item{border-radius:16px;border-color:rgba(16,16,20,.08)}
+  .faq-item.open{border-color:rgba(0,71,187,.28);box-shadow:0 10px 30px rgba(13,13,75,.06)}
+  .faq-chev{color:var(--accent)}
+  .ao-step{border-radius:24px;box-shadow:0 1px 2px rgba(16,16,20,.04),0 10px 34px rgba(16,16,20,.05)}
+  .ao-step-n{background:var(--navy)}
+  .ao-stepper::before{background:linear-gradient(90deg,transparent,rgba(0,71,187,.30),transparent)}
+  .ao-help{border-radius:18px}
+  .ao-help .ic{color:var(--accent)}
+  .info-item,.method{border-radius:16px;border-color:rgba(16,16,20,.07);box-shadow:0 1px 2px rgba(16,16,20,.04),0 8px 26px rgba(16,16,20,.05);transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+  .method:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(16,16,20,.05),0 18px 44px rgba(16,16,20,.10);border-color:rgba(0,71,187,.22)}
+  .info-item .d{background:var(--accent)}
+  @media (prefers-reduced-motion: reduce){ .ao-card{animation:none} }
+  @media (max-width:900px){ .ao-h1{font-size:40px;letter-spacing:-1.5px} .pg-h2{font-size:32px} .pg{padding:64px 0} .stat .n{font-size:46px} }
