@@ -176,19 +176,20 @@
   /* ---- Trading mega menu ---- */
     .mega-panel{position:absolute;left:50%;top:10px;transform:translateX(-50%);width:1000px;max-width:calc(100vw - 32px);
               background:#fff;border:1px solid #E4E4E8;border-radius:18px;box-shadow:0 18px 44px rgba(0,0,0,.10);
-              padding:24px 12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;text-align:left}
+              padding:30px 20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;text-align:left}
   .mega-badge{font:700 8px/1 var(--ui);letter-spacing:.4px;color:#fff;background:var(--ink);border-radius:5px;padding:4px 7px}
-  .mm-col{padding:0 20px}
+  .mm-col{padding:0 26px}
   .mm-col + .mm-col{border-left:1px solid #EDEDF0}
-  .mm-h{font:700 10px/1 var(--ui);letter-spacing:1.6px;color:var(--muted);margin:2px 0 10px;padding:0 10px}
-  .mm-link{display:flex;align-items:flex-start;gap:12px;padding:8px 10px;border-radius:10px;text-decoration:none;cursor:pointer}
+  .mm-h{font:700 10px/1 var(--ui);letter-spacing:1.6px;color:var(--muted);margin:2px 0 16px;padding:0 12px}
+  .mm-link{display:flex;align-items:flex-start;gap:14px;padding:11px 12px;border-radius:11px;text-decoration:none;cursor:pointer}
+  .mm-link + .mm-link{margin-top:2px}
   .mm-link:hover{background:#F5F5F7}
-  .mm-ic{width:32px;height:32px;border-radius:9px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none;display:flex;align-items:center;justify-content:center;color:#8A8A92}
+  .mm-ic{width:34px;height:34px;border-radius:9px;background:#EDEDF0;border:1px solid #E4E4E8;flex:none;display:flex;align-items:center;justify-content:center;color:#8A8A92}
   .mm-txt{min-width:0;flex:1}
-  .mm-tt{display:flex;align-items:center;gap:7px;font:700 12.5px/1.2 var(--ui);color:var(--ink)}
-  .mm-ss{display:block;font:400 10px/1.4 var(--ui);color:var(--muted);margin-top:3px}
-  .mm-subrow{display:flex;flex-direction:column;gap:1px;margin:1px 0 2px 44px}
-  .mm-subrow a{display:flex;align-items:center;gap:9px;padding:6px 10px;border-radius:8px;text-decoration:none;font:600 11px/1.1 var(--ui);color:var(--ink2)}
+  .mm-tt{display:flex;align-items:center;gap:7px;font:700 13px/1.25 var(--ui);color:var(--ink)}
+  .mm-ss{display:block;font:400 10.5px/1.45 var(--ui);color:var(--muted);margin-top:5px}
+  .mm-subrow{display:flex;flex-direction:column;gap:3px;margin:4px 0 6px 48px}
+  .mm-subrow a{display:flex;align-items:center;gap:10px;padding:7px 12px;border-radius:8px;text-decoration:none;font:600 11px/1.1 var(--ui);color:var(--ink2)}
   .mm-subrow a:hover{background:#F5F5F7}
   .mm-subrow .dot{width:5px;height:5px;border-radius:50%;background:var(--line2);flex:none}
   .mm-subrow .cv{margin-left:auto;color:var(--faint);font-size:14px;line-height:1}
